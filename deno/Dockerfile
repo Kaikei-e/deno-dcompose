@@ -2,7 +2,7 @@ FROM ubuntu:20.10
 
 RUN apt update -y && \
 apt upgrade -y && \
-apt install build-essential -y
+apt install build-essential zip -y
 
 RUN apt update -y && \
 apt install -y curl wget git && \
@@ -21,8 +21,11 @@ apt upgrade -y
 RUN curl -fsSL https://deno.land/x/install/install.sh | sh
 
 RUN apt update -y && \
-apt upgrade -y 
+apt upgrade -y
 
 ADD ./apps /apps
+
+RUN export DENO_INSTALL="/$HOME/.deno" && \
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 EXPOSE 8888
