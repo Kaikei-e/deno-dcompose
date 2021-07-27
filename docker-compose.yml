@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  server:
+    build: deno
+    tty: true
+    volumes:
+      - ./deno/app:/app
+    ports:
+      - "8888:8888"
