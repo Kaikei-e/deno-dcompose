@@ -2,14 +2,10 @@ FROM ubuntu:20.10
 
 RUN apt update -y && \
 apt upgrade -y && \
-apt install build-essential zip -y
+apt install build-essential zip curl wget git -y
 
 RUN apt update -y && \
-apt install -y curl wget git && \
-curl -o nodejs.deb https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/nodejs_14.15.2-deb-1nodesource1_amd64.deb && \
-apt install -y ./nodejs.deb && \
-rm nodejs.deb && \
-rm -rf /var/lib/apt/lists/
+apt install -y
 
 RUN wget https://dl.google.com/go/go1.16.6.linux-amd64.tar.gz && \
 tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz &&\
@@ -25,7 +21,8 @@ apt upgrade -y
 
 ADD ./apps /apps
 
-RUN export DENO_INSTALL="/$HOME/.deno" && \
-export PATH="$DENO_INSTALL/bin:$PATH"
+ENV PATH DENO_INSTALL="/$HOME/.deno" && \
+ENV PATH="$DENO_INSTALL/bin:$PATH" && \
+ENV PATH=$PATH:/usr/local/go/bin
 
 EXPOSE 8888

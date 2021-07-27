@@ -4,6 +4,7 @@ services:
   server:
     build: deno
     tty: true
+    env_file: path.env
     volumes:
       - ./deno/app:/app
     ports:
