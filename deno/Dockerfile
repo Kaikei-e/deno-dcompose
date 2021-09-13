@@ -8,7 +8,7 @@ RUN apt update -y && \
 apt install -y
 
 RUN wget https://dl.google.com/go/go1.16.6.linux-amd64.tar.gz && \
-tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz &&\
+tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz &&\
 export PATH=$PATH:/usr/local/go/bin
 
 RUN apt update -y && \
